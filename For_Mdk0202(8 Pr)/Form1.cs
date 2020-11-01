@@ -26,9 +26,9 @@ namespace For_Mdk0202_8_Pr_
 
 
             conn.Open();
-            SqlCommand cmd = new SqlCommand("INSERT into Game_Inf(Name,Descr,Price,Sale) values('"+ textBox1.Text + "','"+ textBox2.Text + "','"+ textBox3.Text + "','"+ textBox4.Text + "') ",conn);
+            SqlCommand cmd = new SqlCommand("INSERT into Game_Inf(Name,Descr,Price,Sale) values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "') ", conn);
             int i = cmd.ExecuteNonQuery();
-            if (i!=0)
+            if (i != 0)
             {
                 MessageBox.Show("Данные загружены");
                 conn.Close();
@@ -38,7 +38,7 @@ namespace For_Mdk0202_8_Pr_
                 MessageBox.Show("Error");
                 conn.Close();
             }
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace For_Mdk0202_8_Pr_
                 case "Game_Inf":
                     #region Game inf 
 
-                    
+
                     dataGridView1.Visible = true;
                     dataGridView2.Visible = false;
                     dataGridView3.Visible = false;
@@ -162,12 +162,12 @@ namespace For_Mdk0202_8_Pr_
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -193,14 +193,14 @@ namespace For_Mdk0202_8_Pr_
         private void button4_Click(object sender, EventArgs e)
         {
 
-            
-                string item2=listBox1.SelectedItem.ToString();
-               
 
-                switch (item2)
-                {
+            string item2 = listBox1.SelectedItem.ToString();
 
-                    case "Game_Inf":
+
+            switch (item2)
+            {
+
+                case "Game_Inf":
 
                     foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
                     {
@@ -217,10 +217,10 @@ namespace For_Mdk0202_8_Pr_
 
                         MessageBox.Show("Deleted From Game Inf");
                     }
-                        break;
+                    break;
 
 
-                    case "Order":
+                case "Order":
                     foreach (DataGridViewRow item in this.dataGridView2.SelectedRows)
                     {
                         conn.Open();
@@ -232,10 +232,10 @@ namespace For_Mdk0202_8_Pr_
 
                         MessageBox.Show("Deleted From Order");
                     }
-                        break;
+                    break;
 
 
-                    case "SAler":
+                case "SAler":
                     foreach (DataGridViewRow item in this.dataGridView3.SelectedRows)
                     {
                         conn.Open();
@@ -251,39 +251,40 @@ namespace For_Mdk0202_8_Pr_
                         conn.Close();
                     }
 
-                        break;
-                    default:
-                        MessageBox.Show("No");
-                        break;
+                    break;
+                default:
+                    MessageBox.Show("No");
+                    break;
 
-                }
-               
-                
             }
-        
+
+
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
 
             string item2 = listBox1.SelectedItem.ToString();
 
 
-            switch (item2) {
+            switch (item2)
+            {
                 case "Game_Inf":
                     foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
                     {
                         conn.Open();
-                        int idgame = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);                 
-                        SqlCommand cmd43 = new SqlCommand("UPDATE Game_Inf SET Name='" + textBox1.Text + "',Descr='" + textBox2.Text + "',Price='" + textBox3.Text + "',Sale='" + textBox4.Text + "' where Id='" + idgame + "'", conn);                   
+                        int idgame = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                        SqlCommand cmd43 = new SqlCommand("UPDATE Game_Inf SET Name='" + textBox1.Text + "',Descr='" + textBox2.Text + "',Price='" + textBox3.Text + "',Sale='" + textBox4.Text + "' where Id='" + idgame + "'", conn);
                         cmd43.ExecuteNonQuery();
-                        
+
                         MessageBox.Show("Updated From Order");
                         dataGridView1.Rows.Clear();
                         string query = "SELECT * FROM Game_Inf ";
-                       
+
                         SqlCommand command = new SqlCommand(query, conn);
                         SqlDataReader readern = command.ExecuteReader();
                         List<string[]> datan = new List<string[]>();
-                         dataGridView2.Rows.Clear();
+                        dataGridView2.Rows.Clear();
                         while (readern.Read())
                         {
                             datan.Add(new string[7]);
@@ -341,7 +342,7 @@ namespace For_Mdk0202_8_Pr_
                     MessageBox.Show("i Repeat, No");
                     break;
             }
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -375,10 +376,88 @@ namespace For_Mdk0202_8_Pr_
             {
                 MessageBox.Show("Выбери корретную строку");
             }
-           
+
         }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            listBox3.Items.Clear();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("Select *  From Game_Inf", conn);
+            da.Fill(dt);
+            foreach(DataRow dr in dt.Rows)
+            {
+                listBox2.Items.Add(dr["Name"].ToString());
+            }
+            
+
+            DataTable dt1 = new DataTable();
+            SqlDataAdapter da1 = new SqlDataAdapter("Select *  From SAler", conn);
+            da1.Fill(dt1);
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+                listBox3.Items.Add(dr1["Name_Saler"].ToString());
+            }
+          
+
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+           
+                string Game = listBox2.SelectedItem.ToString();
+                string Saler = listBox3.SelectedItem.ToString();
+                conn.Open();
+                SqlCommand command = new SqlCommand("Select Id From Game_Inf where Name='" + Game + "'", conn);
+                var go = command.ExecuteScalar().ToString();
+                int ddd = Convert.ToInt32(go);
+      //      MessageBox.Show(Convert.ToString(ddd));
+
+                SqlCommand command21 = new SqlCommand("Select Id from SAler where Name_Saler='" + Saler + "'", conn);
+            var go1 = command21.ExecuteScalar();
+                int ddd1 = Convert.ToInt32(go1);
+       //     MessageBox.Show(Convert.ToString(ddd1));
+            SqlCommand gg = new SqlCommand("INSERT into Order1(Game_Id,Saler_Id) values('" + ddd+ "','"+ddd1+"')", conn);
+            int h = gg.ExecuteNonQuery();
+      //      MessageBox.Show(Convert.ToString(h));
+
+            dataGridView2.Rows.Clear();
+            string query1 = "SELECT * FROM Order1 ";
+
+            SqlCommand command1 = new SqlCommand(query1, conn);
+            SqlDataReader reader1 = command1.ExecuteReader();
+
+            List<string[]> data1 = new List<string[]>();
+
+            while (reader1.Read())
+            {
+                data1.Add(new string[3]);
+
+                data1[data1.Count - 1][0] = reader1[0].ToString();
+                data1[data1.Count - 1][1] = reader1[1].ToString();
+                data1[data1.Count - 1][2] = reader1[2].ToString();
+
+            }
+
+            reader1.Close();
+            conn.Close();
+            foreach (string[] s in data1)
+                dataGridView2.Rows.Add(s);
+
+
+
+
+        }
+
+
+
+
+
     }
-    } 
+    }
+
 
 
 

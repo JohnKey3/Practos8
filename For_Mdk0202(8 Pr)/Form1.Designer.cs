@@ -61,6 +61,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -142,7 +146,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(532, 74);
+            this.button2.Location = new System.Drawing.Point(318, 101);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 27);
             this.button2.TabIndex = 9;
@@ -206,7 +210,7 @@
             "Game_Inf",
             "Order",
             "SAler"});
-            this.listBox1.Location = new System.Drawing.Point(424, 57);
+            this.listBox1.Location = new System.Drawing.Point(318, 22);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(97, 56);
             this.listBox1.TabIndex = 11;
@@ -330,11 +334,51 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(645, 12);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(143, 69);
+            this.listBox2.TabIndex = 21;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(751, 86);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(118, 30);
+            this.button6.TabIndex = 22;
+            this.button6.Text = "Обновить";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(831, 12);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(143, 69);
+            this.listBox3.TabIndex = 23;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(751, 122);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(118, 30);
+            this.button7.TabIndex = 24;
+            this.button7.Text = "Добавить";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 539);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.listBox3);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
@@ -401,6 +445,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button button7;
     }
 }
 
