@@ -265,15 +265,8 @@ namespace For_Mdk0202_8_Pr_
         {
 
             string item2 = listBox1.SelectedItem.ToString();
-            try
-            {
-                 item2 = listBox1.SelectedItem.ToString();
 
-            }
-           catch 
-            {
-MessageBox.Show("CHOOSE");
-            }
+
             switch (item2) {
                 case "Game_Inf":
                     foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
@@ -310,10 +303,6 @@ MessageBox.Show("CHOOSE");
                         foreach (string[] s in datan)
                             dataGridView1.Rows.Add(s);
 
-
-
-
-
                     }
 
                     break;
@@ -329,13 +318,9 @@ MessageBox.Show("CHOOSE");
                         dataGridView3.Rows.Clear();
 
                         string query2 = "SELECT * FROM SAler ";
-
                         SqlCommand command2 = new SqlCommand(query2, conn);
-
                         SqlDataReader reader2 = command2.ExecuteReader();
-
                         List<string[]> data2 = new List<string[]>();
-
                         while (reader2.Read())
                         {
                             data2.Add(new string[3]);
@@ -345,28 +330,18 @@ MessageBox.Show("CHOOSE");
                             data2[data2.Count - 1][2] = reader2[2].ToString();
 
                         }
-
                         reader2.Close();
-
                         conn.Close();
-
                         foreach (string[] s in data2)
                             dataGridView3.Rows.Add(s);
-
-
                     }
                     break;
 
                 default:
                     MessageBox.Show("i Repeat, No");
                     break;
-
-
             }
             
-          
-            
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -376,16 +351,30 @@ MessageBox.Show("CHOOSE");
 
         private void dataGridView3_Click(object sender, EventArgs e)
         {
-            textBox5.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[1].Value);
-            textBox6.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[2].Value);
+            try
+            {
+                textBox5.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[1].Value);
+                textBox6.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[2].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Выбери корретную строку");
+            }
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[1].Value);
-            textBox2.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[2].Value);
-            textBox3.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[3].Value);
-            textBox4.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[4].Value);
+            try
+            {
+                textBox1.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[1].Value);
+                textBox2.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[2].Value);
+                textBox3.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[3].Value);
+                textBox4.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[4].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Выбери корретную строку");
+            }
            
         }
     }
