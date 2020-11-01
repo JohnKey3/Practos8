@@ -49,115 +49,120 @@ namespace For_Mdk0202_8_Pr_
             string Game_inf = "Game_Inf";
             string Order = "Order";
             string SAler = "SAler";
-            #region Game inf 
-            if (item == Game_inf)
-            {dataGridView1.Visible = true;
-                dataGridView2.Visible = false;
-                dataGridView3.Visible = false;
-                dataGridView1.Rows.Clear();
-                conn.Open();
-                
-                string query = "SELECT * FROM Game_Inf ";
 
-                SqlCommand command = new SqlCommand(query, conn);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                List<string[]> data = new List<string[]>();
-
-                while (reader.Read())
-                {
-                    data.Add(new string[7]);
-
-                    data[data.Count - 1][0] = reader[0].ToString();
-                    data[data.Count - 1][1] = reader[1].ToString();
-                    data[data.Count - 1][2] = reader[2].ToString();
-                    data[data.Count - 1][3] = reader[3].ToString();
-                    data[data.Count - 1][4] = reader[4].ToString();
-                    data[data.Count - 1][5] = reader[5].ToString();
-                }
-
-                reader.Close();
-
-                conn.Close();
-
-                foreach (string[] s in data)
-                    dataGridView1.Rows.Add(s);
-            }
-            #endregion
-            #region Order
-            else if (item == Order)
+            switch (item)
             {
-                dataGridView2.Rows.Clear();
-                dataGridView1.Visible = false;
-                dataGridView2.Visible = true;
-                dataGridView3.Visible = false;
+                case "Game_Inf":
+                    #region Game inf 
 
-                conn.Open();
 
-                string query = "SELECT * FROM Order1 ";
+                    dataGridView1.Visible = true;
+                    dataGridView2.Visible = false;
+                    dataGridView3.Visible = false;
+                    dataGridView1.Rows.Clear();
+                    conn.Open();
 
-                SqlCommand command = new SqlCommand(query, conn);
-                SqlDataReader reader = command.ExecuteReader();
+                    string query = "SELECT * FROM Game_Inf ";
 
-                List<string[]> data = new List<string[]>();
+                    SqlCommand command = new SqlCommand(query, conn);
 
-                while (reader.Read())
-                {
-                    data.Add(new string[3]);
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    data[data.Count - 1][0] = reader[0].ToString();
-                    data[data.Count - 1][1] = reader[1].ToString();
-                    data[data.Count - 1][2] = reader[2].ToString();
+                    List<string[]> data = new List<string[]>();
 
-                }
+                    while (reader.Read())
+                    {
+                        data.Add(new string[7]);
 
-                reader.Close();
-                conn.Close();
-                foreach (string[] s in data)
-                    dataGridView2.Rows.Add(s);
-            
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                    }
 
-            }
-            #endregion
-            #region Saler
-            else if (item == SAler)
-            {dataGridView3.Rows.Clear();
-                dataGridView1.Visible = false;
-                dataGridView2.Visible = false;
-                dataGridView3.Visible = true;
-                
-                conn.Open();
-              
-                string query = "SELECT * FROM SAler ";
+                    reader.Close();
 
-                SqlCommand command = new SqlCommand(query, conn);
+                    conn.Close();
 
-                SqlDataReader reader = command.ExecuteReader();
+                    foreach (string[] s in data)
+                        dataGridView1.Rows.Add(s);
+                    break;
+                #endregion
+                case "Order":
+                    #region Order
 
-                List<string[]> data = new List<string[]>();
+                    dataGridView2.Rows.Clear();
+                    dataGridView1.Visible = false;
+                    dataGridView2.Visible = true;
+                    dataGridView3.Visible = false;
 
-                while (reader.Read())
-                {
-                    data.Add(new string[3]);
+                    conn.Open();
 
-                    data[data.Count - 1][0] = reader[0].ToString();
-                    data[data.Count - 1][1] = reader[1].ToString();
-                    data[data.Count - 1][2] = reader[2].ToString();
+                    string query1 = "SELECT * FROM Order1 ";
 
-                }
+                    SqlCommand command1 = new SqlCommand(query1, conn);
+                    SqlDataReader reader1 = command1.ExecuteReader();
 
-                reader.Close();
+                    List<string[]> data1 = new List<string[]>();
 
-                conn.Close();
+                    while (reader1.Read())
+                    {
+                        data1.Add(new string[3]);
 
-                foreach (string[] s in data)
-                    dataGridView3.Rows.Add(s);
-            }
-            #endregion
-            else
-            {
-                MessageBox.Show("Выбери че-нить, не зря же делал");
+                        data1[data1.Count - 1][0] = reader1[0].ToString();
+                        data1[data1.Count - 1][1] = reader1[1].ToString();
+                        data1[data1.Count - 1][2] = reader1[2].ToString();
+
+                    }
+
+                    reader1.Close();
+                    conn.Close();
+                    foreach (string[] s in data1)
+                        dataGridView2.Rows.Add(s);
+
+
+                    break;
+                #endregion
+                case "SAler":
+                    #region Saler
+                    dataGridView3.Rows.Clear();
+                    dataGridView1.Visible = false;
+                    dataGridView2.Visible = false;
+                    dataGridView3.Visible = true;
+
+                    conn.Open();
+
+                    string query2 = "SELECT * FROM SAler ";
+
+                    SqlCommand command2 = new SqlCommand(query2, conn);
+
+                    SqlDataReader reader2 = command2.ExecuteReader();
+
+                    List<string[]> data2 = new List<string[]>();
+
+                    while (reader2.Read())
+                    {
+                        data2.Add(new string[3]);
+
+                        data2[data2.Count - 1][0] = reader2[0].ToString();
+                        data2[data2.Count - 1][1] = reader2[1].ToString();
+                        data2[data2.Count - 1][2] = reader2[2].ToString();
+
+                    }
+
+                    reader2.Close();
+
+                    conn.Close();
+
+                    foreach (string[] s in data2)
+                        dataGridView3.Rows.Add(s);
+                    break;
+                #endregion
+                default:
+                    MessageBox.Show("Choose something");
+                    break;
             }
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -207,6 +212,7 @@ namespace For_Mdk0202_8_Pr_
                 cmd1.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
                 conn.Close();
+
                 MessageBox.Show("Delete");
 
             }
