@@ -262,7 +262,54 @@ namespace For_Mdk0202_8_Pr_
                
                 
             }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string item2 = listBox1.SelectedItem.ToString();
+
+
+            switch (item2) {
+                case "Game_Inf":
+                    foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
+                    {
+                        conn.Open();
+                        int idgame = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                        SqlCommand cmd43 = new SqlCommand("UPDATE Game_Inf SET Name='" + textBox1.Text + "',Descr='" + textBox2.Text + "',Price='" + textBox3.Text + "',Sale='" + textBox4.Text + "' where Id='" + idgame + "'", conn);                   
+                        cmd43.ExecuteNonQuery();
+                        conn.Close();
+
+                        MessageBox.Show("Updated From Order");
+
+                    }
+
+                    break;
+
+                case "SAler":
+                    foreach (DataGridViewRow item in this.dataGridView3.SelectedRows)
+                    {
+
+                        conn.Open();
+                        int idSaler = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value);
+                        SqlCommand cmd46 = new SqlCommand("UPDATE Saler SET Name_Saler='" + textBox5.Text + "',Mail='" + textBox6.Text + "' where Id='" + idSaler + "'", conn);
+                        cmd46.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    break;
+
+                default:
+                    MessageBox.Show("i Repeat, No");
+                    break;
+
+
+            }
+
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
     } 
 
 

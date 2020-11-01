@@ -60,6 +60,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -141,7 +142,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(416, 96);
+            this.button2.Location = new System.Drawing.Point(532, 74);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 27);
             this.button2.TabIndex = 9;
@@ -204,7 +205,7 @@
             "Game_Inf",
             "Order",
             "SAler"});
-            this.listBox1.Location = new System.Drawing.Point(416, 12);
+            this.listBox1.Location = new System.Drawing.Point(424, 57);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(97, 56);
             this.listBox1.TabIndex = 11;
@@ -309,19 +310,30 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(420, 419);
+            this.button4.Location = new System.Drawing.Point(532, 414);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(92, 20);
+            this.button4.Size = new System.Drawing.Size(97, 25);
             this.button4.TabIndex = 19;
             this.button4.Text = "удалить";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(404, 414);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(97, 25);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "Обновить";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 539);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -386,6 +398,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 
