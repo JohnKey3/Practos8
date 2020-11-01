@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Server;
+using System.Linq.Expressions;
 
 namespace For_Mdk0202_8_Pr_
 {
@@ -22,13 +23,10 @@ namespace For_Mdk0202_8_Pr_
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String Name = textBox1.Text;
-            String Descr = textBox2.Text;
-            Int32 Price = Convert.ToInt32(textBox3.Text);
-            Int32 Sale = Convert.ToInt32(textBox4.Text);
+
 
             conn.Open();
-            SqlCommand cmd = new SqlCommand("INSERT into Game_Inf(Name,Descr,Price,Sale) values('"+Name+"','"+Descr+"','"+Price+"','"+Sale+"') ",conn);
+            SqlCommand cmd = new SqlCommand("INSERT into Game_Inf(Name,Descr,Price,Sale) values('"+ textBox1.Text + "','"+ textBox2.Text + "','"+ textBox3.Text + "','"+ textBox4.Text + "') ",conn);
             int i = cmd.ExecuteNonQuery();
             if (i!=0)
             {
@@ -164,7 +162,7 @@ namespace For_Mdk0202_8_Pr_
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+          
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -262,23 +260,59 @@ namespace For_Mdk0202_8_Pr_
                
                 
             }
-
+        
         private void button5_Click(object sender, EventArgs e)
         {
+
             string item2 = listBox1.SelectedItem.ToString();
+            try
+            {
+                 item2 = listBox1.SelectedItem.ToString();
 
-
+            }
+           catch 
+            {
+MessageBox.Show("CHOOSE");
+            }
             switch (item2) {
                 case "Game_Inf":
                     foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
                     {
                         conn.Open();
-                        int idgame = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                        int idgame = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);                 
                         SqlCommand cmd43 = new SqlCommand("UPDATE Game_Inf SET Name='" + textBox1.Text + "',Descr='" + textBox2.Text + "',Price='" + textBox3.Text + "',Sale='" + textBox4.Text + "' where Id='" + idgame + "'", conn);                   
                         cmd43.ExecuteNonQuery();
+                        
+                        MessageBox.Show("Updated From Order");
+                        dataGridView1.Rows.Clear();
+                        string query = "SELECT * FROM Game_Inf ";
+                       
+                        SqlCommand command = new SqlCommand(query, conn);
+                        SqlDataReader readern = command.ExecuteReader();
+                        List<string[]> datan = new List<string[]>();
+                         dataGridView2.Rows.Clear();
+                        while (readern.Read())
+                        {
+                            datan.Add(new string[7]);
+
+                            datan[datan.Count - 1][0] = readern[0].ToString();
+                            datan[datan.Count - 1][1] = readern[1].ToString();
+                            datan[datan.Count - 1][2] = readern[2].ToString();
+                            datan[datan.Count - 1][3] = readern[3].ToString();
+                            datan[datan.Count - 1][4] = readern[4].ToString();
+                            datan[datan.Count - 1][5] = readern[5].ToString();
+                        }
+
+                        readern.Close();
+
                         conn.Close();
 
-                        MessageBox.Show("Updated From Order");
+                        foreach (string[] s in datan)
+                            dataGridView1.Rows.Add(s);
+
+
+
+
 
                     }
 
@@ -292,7 +326,34 @@ namespace For_Mdk0202_8_Pr_
                         int idSaler = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value);
                         SqlCommand cmd46 = new SqlCommand("UPDATE Saler SET Name_Saler='" + textBox5.Text + "',Mail='" + textBox6.Text + "' where Id='" + idSaler + "'", conn);
                         cmd46.ExecuteNonQuery();
+                        dataGridView3.Rows.Clear();
+
+                        string query2 = "SELECT * FROM SAler ";
+
+                        SqlCommand command2 = new SqlCommand(query2, conn);
+
+                        SqlDataReader reader2 = command2.ExecuteReader();
+
+                        List<string[]> data2 = new List<string[]>();
+
+                        while (reader2.Read())
+                        {
+                            data2.Add(new string[3]);
+
+                            data2[data2.Count - 1][0] = reader2[0].ToString();
+                            data2[data2.Count - 1][1] = reader2[1].ToString();
+                            data2[data2.Count - 1][2] = reader2[2].ToString();
+
+                        }
+
+                        reader2.Close();
+
                         conn.Close();
+
+                        foreach (string[] s in data2)
+                            dataGridView3.Rows.Add(s);
+
+
                     }
                     break;
 
@@ -302,12 +363,30 @@ namespace For_Mdk0202_8_Pr_
 
 
             }
+            
+          
+            
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView3_Click(object sender, EventArgs e)
+        {
+            textBox5.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[1].Value);
+            textBox6.Text = Convert.ToString(dataGridView3.SelectedRows[0].Cells[2].Value);
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[1].Value);
+            textBox2.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[2].Value);
+            textBox3.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[3].Value);
+            textBox4.Text = Convert.ToString(dataGridView1.SelectedRows[0].Cells[4].Value);
+           
         }
     }
     } 

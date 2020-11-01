@@ -166,6 +166,7 @@
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.Visible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // Column1
             // 
@@ -217,7 +218,7 @@
             this.Column7,
             this.Column8,
             this.Column9});
-            this.dataGridView2.Location = new System.Drawing.Point(289, 157);
+            this.dataGridView2.Location = new System.Drawing.Point(318, 158);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(689, 234);
             this.dataGridView2.TabIndex = 12;
@@ -245,11 +246,12 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            this.dataGridView3.Location = new System.Drawing.Point(289, 151);
+            this.dataGridView3.Location = new System.Drawing.Point(318, 152);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(724, 240);
             this.dataGridView3.TabIndex = 13;
             this.dataGridView3.Visible = false;
+            this.dataGridView3.Click += new System.EventHandler(this.dataGridView3_Click);
             // 
             // Column10
             // 
