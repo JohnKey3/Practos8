@@ -46,16 +46,13 @@ namespace For_Mdk0202_8_Pr_
         private void button2_Click(object sender, EventArgs e)
         {
             string item = listBox1.SelectedItem.ToString();
-            string Game_inf = "Game_Inf";
-            string Order = "Order";
-            string SAler = "SAler";
 
             switch (item)
             {
                 case "Game_Inf":
                     #region Game inf 
 
-
+                    
                     dataGridView1.Visible = true;
                     dataGridView2.Visible = false;
                     dataGridView3.Visible = false;
@@ -198,26 +195,76 @@ namespace For_Mdk0202_8_Pr_
         private void button4_Click(object sender, EventArgs e)
         {
 
-            foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
-            {
+            
+                string item2=listBox1.SelectedItem.ToString();
                
-                  
-                conn.Open();
-                int id3 = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
-                SqlCommand cmd = new SqlCommand("Delete from Game_Inf where Id='" + id3+ "'", conn);
-                SqlCommand cmd1 = new SqlCommand("Delete from Order1 where Game_Id = '" + id3+"'", conn);
+                switch (item2)
+                {
 
-                dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
-                cmd1.ExecuteNonQuery();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                    case "Game_Inf":
 
-                MessageBox.Show("Delete");
+                    foreach (DataGridViewRow item in this.dataGridView1.SelectedRows)
+                    {
+                        conn.Open();
+                        int id3 = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
+                        SqlCommand cmd = new SqlCommand("Delete from Game_Inf where Id='" + id3 + "'", conn);
+                        SqlCommand cmd1 = new SqlCommand("Delete from Order1 where Game_Id = '" + id3 + "'", conn);
+
+                        dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
+                        cmd1.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                        MessageBox.Show("Deleted From Game Inf");
+                    }
+                        break;
+
+
+                    case "Order":
+                    foreach (DataGridViewRow item in this.dataGridView2.SelectedRows)
+                    {
+                        conn.Open();
+                        int idOrder = Convert.ToInt32(dataGridView2.SelectedRows[0].Cells[0].Value);
+                        SqlCommand cmd2 = new SqlCommand("Delete from Order1 where Order_Id='" + idOrder + "'", conn);
+                        dataGridView2.Rows.RemoveAt(this.dataGridView2.SelectedRows[0].Index);
+                        cmd2.ExecuteNonQuery();
+                        conn.Close();
+
+                        MessageBox.Show("Deleted From Order");
+                    }
+                        break;
+
+
+                    case "SAler":
+                    foreach (DataGridViewRow item in this.dataGridView3.SelectedRows)
+                    {
+                        conn.Open();
+                        int idSaler = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells[0].Value);
+
+                        SqlCommand cmd5 = new SqlCommand("Delete from Saler where Id='" + idSaler + "'", conn);
+                        SqlCommand cmd6 = new SqlCommand("Delete from Order1 where Saler_Id = '" + idSaler + "'", conn);
+
+                        dataGridView3.Rows.RemoveAt(this.dataGridView3.SelectedRows[0].Index);
+                        cmd6.ExecuteNonQuery();
+                        cmd5.ExecuteNonQuery();
+                        MessageBox.Show("Deleted From Slaer");
+                        conn.Close();
+                    }
+
+                        break;
+                    default:
+                        MessageBox.Show("No");
+                        break;
+
+                }
+               
+                
             }
         }
-    }
-    
-}
+    } 
+
+
+
 
